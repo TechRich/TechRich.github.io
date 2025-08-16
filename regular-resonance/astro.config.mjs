@@ -15,7 +15,7 @@ export default defineConfig({
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/TechRich' },
 				{ icon: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/in/techrich' },
-				{ icon: 'mail', label: 'Email', href: 'mailto:hello@about.techrich.net' },
+				{ icon: 'email', label: 'Email', href: 'mailto:hello@about.techrich.net' },
 			],
 			sidebar: [
 				{
@@ -59,9 +59,6 @@ export default defineConfig({
 			},
 			lastUpdated: true,
 			pagination: true,
-			search: {
-				provider: 'local',
-			},
 		}),
 	],
 	site: 'https://about.techrich.net',

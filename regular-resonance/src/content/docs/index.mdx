@@ -1,8 +1,12 @@
 ---
 title: 'Welcome to My Personal Website'
 description: 'Personal website showcasing my work, skills, and interests'
-hero: 'Hi, I\'m TechRich 👋'
+template: 'splash'
+hero:
+  tagline: 'Hi, I am TechRich 👋'
 ---
+
+import SkillsGrid from '../../components/SkillsGrid.astro';
 
 # Welcome to My Personal Website
 
@@ -28,37 +32,7 @@ A mobile-first solution for modern productivity challenges.
 
 ## Skills & Technologies
 
-<div class="skills-grid">
-  <div class="skill-category">
-    <h3>Frontend</h3>
-    <ul>
-      <li>React & Vue.js</li>
-      <li>TypeScript</li>
-      <li>CSS & Sass</li>
-      <li>Responsive Design</li>
-    </ul>
-  </div>
-  
-  <div class="skill-category">
-    <h3>Backend</h3>
-    <ul>
-      <li>Node.js & Python</li>
-      <li>Databases (SQL & NoSQL)</li>
-      <li>API Design</li>
-      <li>Cloud Services</li>
-    </ul>
-  </div>
-  
-  <div class="skill-category">
-    <h3>Tools & DevOps</h3>
-    <ul>
-      <li>Git & GitHub</li>
-      <li>Docker & Kubernetes</li>
-      <li>CI/CD Pipelines</li>
-      <li>Monitoring & Analytics</li>
-    </ul>
-  </div>
-</div>
+<SkillsGrid />
 
 ## Get in Touch
 
@@ -77,41 +51,3 @@ I'm always interested in hearing about new opportunities, interesting projects, 
 ---
 
 *This website was built with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build) for a fast, modern, and beautiful experience.*
-
-<style>
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-  }
-  
-  .skill-category {
-    background: var(--sl-color-accent-low);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid var(--sl-color-border);
-  }
-  
-  .skill-category h3 {
-    margin: 0 0 1rem 0;
-    color: var(--sl-color-accent);
-    font-size: 1.2rem;
-  }
-  
-  .skill-category ul {
-    margin: 0;
-    padding-left: 1.5rem;
-  }
-  
-  .skill-category li {
-    margin: 0.5rem 0;
-    color: var(--sl-color-text);
-  }
-  
-  @media (max-width: 768px) {
-    .skills-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

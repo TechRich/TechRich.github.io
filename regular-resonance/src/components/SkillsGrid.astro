@@ -1,0 +1,73 @@
+---
+// Skills Grid Component for the homepage
+---
+
+<div class="skills-grid">
+  <div class="skill-category">
+    <h3>Frontend</h3>
+    <ul>
+      <li>React & Vue.js</li>
+      <li>TypeScript</li>
+      <li>CSS & Sass</li>
+      <li>Responsive Design</li>
+    </ul>
+  </div>
+  
+  <div class="skill-category">
+    <h3>Backend</h3>
+    <ul>
+      <li>Node.js & Python</li>
+      <li>Databases (SQL & NoSQL)</li>
+      <li>API Design</li>
+      <li>Cloud Services</li>
+    </ul>
+  </div>
+  
+  <div class="skill-category">
+    <h3>Tools & DevOps</h3>
+    <ul>
+      <li>Git & GitHub</li>
+      <li>Docker & Kubernetes</li>
+      <li>CI/CD Pipelines</li>
+      <li>Monitoring & Analytics</li>
+    </ul>
+  </div>
+</div>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .skill-category {
+    background: var(--sl-color-accent-low);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--sl-color-border);
+  }
+  
+  .skill-category h3 {
+    margin: 0 0 1rem 0;
+    color: var(--sl-color-accent);
+    font-size: 1.2rem;
+  }
+  
+  .skill-category ul {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+  
+  .skill-category li {
+    margin: 0.5rem 0;
+    color: var(--sl-color-text);
+  }
+  
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
