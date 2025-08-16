@@ -7,26 +7,30 @@ hero:
 ---
 
 import ProseMirrorEditor from '../../components/ProseMirrorEditor.astro';
+import GitHubAuth from '../../components/GitHubAuth.astro';
 
 # Content Editor
 
 Welcome to your personal website's content editor! This professional WYSIWYG editor gives you the power to create beautiful, formatted content without touching code.
 
+**🔒 Secure Access Required** - This editor is protected with GitHub OAuth authentication to ensure only authorized users can create content.
+
 ## Features
 
-- **Rich Text Editing** - Bold, italic, lists, and more
+- **Rich Text Editing** - Bold, italic, and more formatting options
 - **Professional Interface** - Clean, modern design that matches your site
 - **Real-time Preview** - See your content as you type
-- **Markdown Export** - Save your work in standard markdown format
+- **HTML Export** - Save your work in standard HTML format
 - **Responsive Design** - Works perfectly on all devices
 - **Keyboard Shortcuts** - Power user features for efficiency
 
 ## How to Use
 
-1. **Start Typing** - Click in the editor and begin writing
-2. **Format Text** - Use the toolbar buttons for styling
-3. **Preview Content** - Click "Preview" to see the final result
-4. **Save Your Work** - Export as markdown when ready
+1. **Authenticate** - Sign in with your GitHub account
+2. **Start Typing** - Click in the editor and begin writing
+3. **Format Text** - Use the toolbar buttons for styling
+4. **Preview Content** - Click "Preview" to see the final result
+5. **Save Your Work** - Export as HTML when ready
 
 ## Keyboard Shortcuts
 
@@ -36,9 +40,13 @@ Welcome to your personal website's content editor! This professional WYSIWYG edi
 - `Ctrl/Cmd + Y` - Redo
 - `Ctrl/Cmd + Shift + Z` - Redo (alternative)
 
+## Authentication Required
+
+<GitHubAuth />
+
 ## Try It Out
 
-Below is your live editor. Start creating content for your personal website!
+Once you're authenticated, the editor will appear below. Start creating content for your personal website!
 
 <ProseMirrorEditor />
 
@@ -53,8 +61,15 @@ Below is your live editor. Start creating content for your personal website!
 
 Once you're happy with your content:
 
-1. Save it as markdown using the "Save to Markdown" button
+1. Save it as HTML using the "Save to HTML" button
 2. Copy the content to your website pages
 3. Update your site and deploy to GitHub Pages
 
 Your content will be beautifully formatted and ready to impress visitors!
+
+## Security Features
+
+- **GitHub OAuth** - Secure authentication via GitHub
+- **User Whitelist** - Only authorized users can access
+- **Session Management** - Secure token handling
+- **Access Control** - Prevents unauthorized content creation

@@ -2,29 +2,38 @@
 // ProseMirror Editor Component for Astro + Starlight
 ---
 
-<div class="prosemirror-container">
+<div class="prosemirror-container" style="display: none;">
   <div class="editor-toolbar">
-    <button class="toolbar-btn" data-command="bold" title="Bold">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M15.6 11.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 7.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"/>
-      </svg>
-    </button>
-    <button class="toolbar-btn" data-command="italic" title="Italic">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z"/>
-      </svg>
-    </button>
-    <div class="toolbar-separator"></div>
-    <button class="toolbar-btn" data-command="undo" title="Undo">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
-      </svg>
-    </button>
-    <button class="toolbar-btn" data-command="redo" title="Redo">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18.4 19.6c-1.39 1.39-3.16 2.4-5.4 2.4-3.54 0-6.55-2.31-7.6-5.5l-2.37.78C4.92 18.97 8.85 22 13.5 22c2.65 0 5.05-.99 6.9-2.6L22 17v-9h-9l3.62 3.62z"/>
-      </svg>
-    </button>
+    <div class="toolbar-left">
+      <button class="toolbar-btn" data-command="bold" title="Bold">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M15.6 11.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 7.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"/>
+        </svg>
+      </button>
+      <button class="toolbar-btn" data-command="italic" title="Italic">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="toolbar-right">
+      <button class="toolbar-btn" data-command="undo" title="Undo">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
+        </svg>
+      </button>
+      <button class="toolbar-btn" data-command="redo" title="Redo">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.4 19.6c-1.39 1.39-3.16 2.4-5.4 2.4-3.54 0-6.55-2.31-7.6-5.5l-2.37.78C4.92 18.97 8.85 22 13.5 22c2.65 0 5.05-.99 6.9-2.6L22 17v-9h-9l3.62 3.62z"/>
+        </svg>
+      </button>
+      <button class="toolbar-btn logout-btn" onclick="logout()" title="Logout">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+        </svg>
+      </button>
+    </div>
   </div>
   
   <div id="editor" class="prosemirror-editor" contenteditable="true">
@@ -32,7 +41,7 @@
   </div>
   
   <div class="editor-footer">
-    <button id="saveBtn" class="save-btn">Save to Markdown</button>
+    <button id="saveBtn" class="save-btn">Save to HTML</button>
     <button id="previewBtn" class="preview-btn">Preview</button>
     <div class="word-count">Words: <span id="wordCount">0</span></div>
   </div>
@@ -60,6 +69,8 @@
   
   // Toolbar functionality
   document.querySelectorAll('.toolbar-btn').forEach(btn => {
+    if (btn.classList.contains('logout-btn')) return; // Skip logout button
+    
     btn.addEventListener('click', (e) => {
       const command = e.currentTarget.dataset.command;
       
@@ -138,6 +149,22 @@
       }
     }
   });
+  
+  // Function to show editor (called by auth component)
+  window.showEditor = function() {
+    const editorContainer = document.querySelector('.prosemirror-container');
+    if (editorContainer) {
+      editorContainer.style.display = 'block';
+    }
+  };
+  
+  // Function to hide editor (called by auth component)
+  window.hideEditor = function() {
+    const editorContainer = document.querySelector('.prosemirror-container');
+    if (editorContainer) {
+      editorContainer.style.display = 'none';
+    }
+  };
 </script>
 
 <style>
@@ -150,12 +177,20 @@
   .editor-toolbar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
     padding: 12px;
     background: var(--sl-color-accent);
     border-radius: 8px 8px 0 0;
     border: 1px solid var(--sl-color-border);
     border-bottom: none;
+  }
+
+  .toolbar-left,
+  .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .toolbar-btn {
@@ -176,10 +211,12 @@
     background: var(--sl-color-accent-high);
   }
 
-  .toolbar-separator {
-    width: 1px;
-    height: 24px;
-    background: var(--sl-color-border);
+  .logout-btn {
+    color: #ef4444;
+  }
+
+  .logout-btn:hover {
+    background: #fee2e2;
   }
 
   .prosemirror-editor {
@@ -292,8 +329,14 @@
 
   @media (max-width: 768px) {
     .editor-toolbar {
-      flex-wrap: wrap;
-      gap: 4px;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .toolbar-left,
+    .toolbar-right {
+      width: 100%;
+      justify-content: center;
     }
     
     .toolbar-btn {
