@@ -16,6 +16,11 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env.local
+
+# local tooling (not committed)
+docker-compose.local.yml
+cms/
 
 # macOS-specific files
 .DS_Store

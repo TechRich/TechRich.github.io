@@ -1,12 +1,12 @@
 # TechRich Personal Website
 
-A modern, responsive personal website built with **Astro + Starlight + ProseMirror** for a professional online presence with built-in WYSIWYG editing capabilities.
+A modern, responsive personal website built with **Astro + Starlight + Decap CMS** for a professional online presence with a local WYSIWYG editing workflow.
 
 ## ✨ Features
 
 - **🚀 Fast & Modern** - Built with Astro for optimal performance
 - **🎨 Beautiful Design** - Starlight theme with custom styling
-- **✏️ WYSIWYG Editor** - ProseMirror-powered content editor
+- **✏️ WYSIWYG Editor** - Local Decap CMS editor (dev-only)
 - **📱 Responsive** - Works perfectly on all devices
 - **🎯 SEO Optimized** - Built-in SEO and performance features
 - **🔍 Search** - Local search functionality
@@ -17,7 +17,7 @@ A modern, responsive personal website built with **Astro + Starlight + ProseMirr
 
 - **Framework**: [Astro](https://astro.build) - Modern static site generator
 - **Theme**: [Starlight](https://starlight.astro.build) - Beautiful documentation theme
-- **Editor**: [ProseMirror](https://prosemirror.net) - Professional WYSIWYG editor
+- **Editor**: [Decap CMS](https://decapcms.org) - Local editor UI (no auth needed)
 - **Styling**: CSS with CSS custom properties for theming
 - **Deployment**: GitHub Pages ready
 
@@ -54,33 +54,56 @@ A modern, responsive personal website built with **Astro + Starlight + ProseMirr
 ```
 src/
 ├── components/          # Astro components
-│   └── ProseMirrorEditor.astro  # WYSIWYG editor
-├── content/            # Content files (MDX)
-│   └── docs/          # Documentation pages
-├── assets/            # Static assets
-└── layouts/           # Layout components
+├── content/             # Content files (MDX)
+│   └── docs/            # Documentation pages (Guides, Reference)
+├── assets/              # Static assets
+└── pages/admin/         # Dev-only Decap CMS entrypoint
 
-public/                # Public assets
-astro.config.mjs       # Astro configuration
+public/                  # Public assets (served as-is)
+└── admin/config.yml     # Decap CMS configuration
+astro.config.mjs         # Astro configuration
 ```
 
 ## ✏️ Using the WYSIWYG Editor
 
-The ProseMirror editor is available at `/docs/editor/` and provides:
+Use the local Decap CMS editor during development (no auth required):
+
+- Start the local backend proxy: `npx decap-cms-proxy-server` (or `npx netlify-cms-proxy-server`)
+- Run the site: `npm run dev`
+- Open: `http://localhost:4321/admin/`
+- Click “Use Local Backend” on the login screen
+
+This editor creates Markdown files under `src/content/docs/**` and uploads media to `public/uploads/`. Commit and push to publish via GitHub Pages.
+
+Editor capabilities:
 
 - **Rich Text Editing** - Bold, italic, lists, and more
 - **Professional Toolbar** - Easy formatting controls
 - **Real-time Preview** - See your content as you type
-- **Markdown Export** - Save your work in standard format
+- **Create/Edit Markdown** - Writes `.mdx` into `src/content/docs/**`
 - **Keyboard Shortcuts** - Power user features
 
 ### Editor Features
 
-- **Toolbar**: Format text, create lists, undo/redo
-- **Preview**: See how your content will look
-- **Export**: Save as markdown file
-- **Word Count**: Track your content length
-- **Responsive**: Works on all device sizes
+- Visual markdown editing with previews
+- Media uploads to `public/uploads/`
+- Files saved as `.mdx` with frontmatter
+- Draft/Review/Publish workflow (editorial workflow)
+
+### Docker-based local setup (optional)
+
+Run the dev server and CMS proxy via Docker:
+
+1. Install Docker Desktop
+2. From the repo root:
+
+   ```bash
+   docker compose -f docker-compose.local.yml up --build
+   ```
+
+3. Open the site at `http://localhost:4321/admin/` and click “Use Local Backend”
+
+The file `docker-compose.local.yml` is ignored by Git to keep local tooling out of commits.
 
 ## 🎨 Customization
 
@@ -122,12 +145,11 @@ description: 'Page description'
    git push origin main
    ```
 
-2. **Enable GitHub Pages**
+2. **Enable GitHub Pages (GitHub Actions)**
    - Go to repository Settings > Pages
-   - Source: Deploy from a branch
-   - Branch: main, folder: / (root)
+   - Build and deployment: GitHub Actions (workflow: Deploy to GitHub Pages)
 
-3. **Build and deploy**
+3. **Build and preview locally**
    ```bash
    npm run build
    npm run preview
@@ -142,9 +164,9 @@ The site is configured for `about.techrich.net`. Update `astro.config.mjs` and `
 ### Creating Content
 
 1. **Use the WYSIWYG Editor**
-   - Navigate to `/docs/editor/`
+   - Use the Decap CMS at `/admin/` during local development
    - Create your content visually
-   - Export as markdown
+   - Commit and push when ready to publish
 
 2. **Edit MDX Files Directly**
    - Modify files in `src/content/docs/`
@@ -218,7 +240,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - [Astro](https://astro.build) - Amazing static site generator
 - [Starlight](https://starlight.astro.build) - Beautiful documentation theme
-- [ProseMirror](https://prosemirror.net) - Professional editor framework
+- [Decap CMS](https://decapcms.org) - Simple, Git-based editing UI
 - [GitHub Pages](https://pages.github.com) - Free hosting platform
 
 ## 📞 Contact

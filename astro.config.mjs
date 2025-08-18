@@ -22,21 +22,13 @@ export default defineConfig({
 					label: 'Home',
 					items: [
 						{ label: 'Welcome', link: '/' },
-					],
-				},
-				{
-					label: 'Tools',
-					items: [
-						{ label: 'Content Editor', link: '/docs/editor/' },
+						{ label: 'About', link: '/about/' },
+						{ label: 'Contact', link: '/contact/' },
 					],
 				},
 				{
 					label: 'Guides',
-					items: [
-						{ label: 'Modern Web Apps', link: '/docs/guides/modern-web-apps/' },
-						{ label: 'Future of Web Dev', link: '/docs/guides/future-web-dev/' },
-						{ label: 'OSS Best Practices', link: '/docs/guides/oss-best-practices/' },
-					],
+					autogenerate: { directory: 'guides' },
 				},
 				{
 					label: 'Reference',

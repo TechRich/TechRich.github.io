@@ -1,0 +1,42 @@
+---
+// Simple preview component to surface settings managed via Decap CMS.
+import settings from "../content/settings/site.json";
+const { site_title, site_description, homepage_tagline, social_github, social_linkedin, email } = settings as any;
+---
+
+<section class="site-settings-preview">
+  <div class="content">
+    <div class="meta">
+      <strong>{site_title}</strong>
+      <span class="desc">{site_description}</span>
+    </div>
+    {homepage_tagline && <div class="tagline">{homepage_tagline}</div>}
+    <div class="links">
+      {social_github && <a href={social_github} target="_blank">GitHub</a>}
+      {social_linkedin && <a href={social_linkedin} target="_blank">LinkedIn</a>}
+      {email && <a href={`mailto:${email}`}>Email</a>}
+    </div>
+  </div>
+</section>
+
+<style>
+  .site-settings-preview {
+    margin: 1rem 0 2rem 0;
+    padding: 1rem;
+    border: 1px solid var(--sl-color-border);
+    border-radius: 12px;
+    background: var(--sl-color-accent-low);
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .meta { display: flex; gap: 0.75rem; align-items: baseline; }
+  .meta .desc { color: var(--sl-color-text-sl); }
+  .tagline { color: var(--sl-color-accent); font-weight: 600; }
+  .links { display: flex; gap: 0.75rem; }
+  .links a { text-decoration: none; color: var(--sl-color-text); }
+  .links a:hover { text-decoration: underline; }
+</style>
+
